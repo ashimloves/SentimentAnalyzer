@@ -1,9 +1,9 @@
 package com.botgod.word2vec;
 
+import com.botgod.utilities.DataUtilities;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 import org.deeplearning4j.eval.Evaluation;
-import com.botgod.utilities.DataUtilities;
 import org.deeplearning4j.models.embeddings.loader.WordVectorSerializer;
 import org.deeplearning4j.models.embeddings.wordvectors.WordVectors;
 import org.deeplearning4j.nn.conf.GradientNormalization;
@@ -23,20 +23,18 @@ import org.nd4j.linalg.learning.config.Adam;
 import org.nd4j.linalg.lossfunctions.LossFunctions;
 
 import java.io.File;
-import java.io.IOException;
 import java.net.URL;
 
 public class Word2VecSentimentRNN {
-    private static final String CHARSET = "UTF-8";
     /** Data URL for downloading */
     private static final String DATA_URL = "http://ai.stanford.edu/~amaas/data/sentiment/aclImdb_v1.tar.gz";
     /** Location to save and extract the training/testing data */
     private static final String DATA_PATH = FilenameUtils.concat(System.getProperty("java.io.tmpdir"), "dl4j_w2vSentiment/");
     /** Location (local file system) for the Google News vectors. Set this manually. */
     private static final String WORD_VECTORS_PATH = "/home/rik/apps/GoogleNews-vectors-negative300.bin.gz";
-    private static MultiLayerNetwork net;
-    private static SentimentExampleIterator test;
-    private static int truncateReviewsToLength;
+    private MultiLayerNetwork net;
+    private SentimentExampleIterator test;
+    private int truncateReviewsToLength;
 
 
     public void train() throws Exception {
